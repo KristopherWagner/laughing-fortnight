@@ -1,3 +1,11 @@
+var Wrapper = React.createClass({
+  rander: function() {
+    return <div className="wrapper">
+    {this.props.children}
+    </div>;
+  }
+});
+
 var HelloWorld = React.createClass({
   getInitialState: function() {
     return {
@@ -10,11 +18,11 @@ var HelloWorld = React.createClass({
   }, 
 
   render: function() {
-    return <div>
+    return <Wrapper>
       <button onClick={this.greet}>Greet</button>
       <br />
       <span>{this.state.greeting}</span>
-      </div>;
+      </Wrapper>;
   }
 });
 
