@@ -7,7 +7,7 @@ app.controller("testController", function ($scope)) {
 app.directive("helloWorld", function () {
   return {
     restrict: "E",
-    template: "<button ng-click='greet();'>Greet</button><br /><div>{{greeting}}</div>",
+    template: document.getElementById("hello-world-template").innerHTML,
     scope: {
       name: "@"
     },
@@ -15,8 +15,16 @@ app.directive("helloWorld", function () {
       scope.greeting = "";
 
       scope.greet = function() [
-        scope.greeting = "Hello, World!";
+        scope.greeting = "Hello, " + scope.name + "!";
     }
   }
   };
+});
+
+app.directive("wrapper", function() {
+  return {
+    restrict: "E",
+    template: document.getElementById("wrapper-template").innerHTML,
+    transclude: true
+  }
 });

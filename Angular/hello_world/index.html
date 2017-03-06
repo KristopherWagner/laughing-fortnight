@@ -1,6 +1,20 @@
 <html ng-app="testApp">
   <head></head>
   <body ng-controller="testController">
+    <script type="text/html" id="hello-world=template">
+      <wrapper>
+        <button ng-click="greet()">Greet</button>
+        <br />
+        <div>{{greeting}}</div>
+      </wrapper>
+    </script>
+
+    <script type="text/html" id="wrapper-template">
+      <div class="wrapper">
+        <ng-transclude />
+      </div>
+    </script>
+
     <hello-world name="{{name}}" />
   </body>
 </html>
