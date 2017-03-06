@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 function CelsiusToFahrenheit(props) {
-    const f = props.temp * 1.8 + 32;
+    const f = Math.round((1000 * (props.temp * 1.8 + 32)) / 1000);
     return <p>{props.temp} C is {f} F</p>
 }
 
