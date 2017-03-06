@@ -26,8 +26,7 @@ export default class Clock extends Component {
   render() {
     return (
         <div>
-          <h2>{this.state.date.toLocaleDateString()}</h2>
-          <h2>{this.state.date.toLocaleTimeString()}</h2>
+          <h2>It is {this.state.date.toLocaleTimeString()} on {this.state.date.toLocaleDateString()}.</h2>
         </div>
     );
   }
