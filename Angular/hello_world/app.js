@@ -12,12 +12,14 @@ app.directive("helloWorld", function () {
       name: "@"
     },
     link: function(scope) {
-      scope.greeting = "";
+      scope.greetings = [];
 
-      scope.greet = function() [
-        scope.greeting = "Hello, " + scope.name + "!";
+      scope.greet = function() {
+        scope.greetings.push("Hello, " + scope.name + "!");
+        scope.greetings.push("Hi, " + scope.name + "!");
+        scope.greetings.push("Hey, " + scope.name + "!");
+      }
     }
-  }
   };
 });
 

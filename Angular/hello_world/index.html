@@ -4,8 +4,10 @@
     <script type="text/html" id="hello-world=template">
       <wrapper>
         <button ng-click="greet()">Greet</button>
-        <br />
-        <div>{{greeting}}</div>
+        <div ng-repeat="greeting in greetings">
+          <br />  
+          <div>{{greeting}}</div>
+        </div>
       </wrapper>
     </script>
 
