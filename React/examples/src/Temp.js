@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
 function CelsiusToFahrenheit(props) {
-    const f = Math.round((1000 * (props.temp * 1.8 + 32)) / 1000);
-    return <p>{props.temp} C is {f} F</p>
+    let c = props.temp;
+    if (Number.isNaN(c)) {
+      c = 0;
+    }
+    const f = Math.round((1000 * (c * 1.8 + 32)) / 1000);
+    return <p>{c} C is {f} F</p>
 }
 
 export default class Temp extends Component {
