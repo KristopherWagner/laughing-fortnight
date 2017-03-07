@@ -1,6 +1,7 @@
 # laughing-fortnight
-Testing Angular and React
+Learning React
 
-Hello World examples taken from
-https://www.codementor.io/reactjs/tutorial/react-vs-angularjs
-https://facebook.github.io/react/docs/hello-world.html
+Examples and tutorials found at:
+[Hello World](https://facebook.github.io/react/docs/hello-world.html)
+[Quick Start](https://facebook.github.io/react/docs/installation.html)
+[Tic Tac Toe](https://facebook.github.io/react/tutorial/tutorial.html)
