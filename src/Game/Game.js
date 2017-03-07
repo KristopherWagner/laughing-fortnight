@@ -17,22 +17,27 @@ class Board extends Component {
     }
 
     render() {
+        let jsx = [];
+        for (let i = 0; i < 3; i++) {
+            let row = [];
+
+            for (let j = i * 3; j < (i + 1) * 3; j++) {
+                row.push(this.renderSquare(j));
+
+            }
+            jsx.push(row);
+        }
+
         return (
             <div>
               <div className="board-row">
-                {this.renderSquare(0)}
-                {this.renderSquare(1)}
-                {this.renderSquare(2)}
+                {jsx[0]}
               </div>
               <div className="board-row">
-                {this.renderSquare(3)}
-                {this.renderSquare(4)}
-                {this.renderSquare(5)}
+                {jsx[1]}
               </div>
               <div className="board-row">
-                {this.renderSquare(6)}
-                {this.renderSquare(7)}
-                {this.renderSquare(8)}
+                {jsx[2]}
               </div>
             </div>
         );
