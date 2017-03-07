@@ -3,8 +3,9 @@ import React, {
 } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Clock from './Clock';
-import Temp from './Temp';
+import Clock from './Clock/Clock';
+import Temperature from './Temperature/Temperature';
+import Game from './Game/Game';
 
 class App extends Component {
     render() {
@@ -18,7 +19,8 @@ class App extends Component {
               Hello, World!
             </p>
             <Clock />
-            <Temp />
+            <Temperature />
+            <Game />
           </div>
         );
     }

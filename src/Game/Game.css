@@ -1,6 +1,9 @@
-body {
+.game {
     font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto;
+    width: 50%;
 }
 
 ol,
@@ -39,11 +42,6 @@ ul {
 
 .kdb-navigation .square:focus {
     background: #ddd;
-}
-
-.game {
-    display: flex;
-    flex-direction: row;
 }
 
 .game-info {

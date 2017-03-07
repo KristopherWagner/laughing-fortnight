@@ -40,7 +40,7 @@ function convert(value, scale) {
 
 // Class that displays the text box 
 // and grabs the user input
-class TempInput extends React.Component {
+class TemperatureInput extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -64,7 +64,7 @@ class TempInput extends React.Component {
 }
 
 // main class
-export default class Temp extends Component {
+export default class Temperature extends Component {
     constructor(props) {
         super(props);
 
@@ -99,11 +99,11 @@ export default class Temp extends Component {
 
         return (
             <div>
-              <TempInput
+              <TemperatureInput
                 scale="c"
                 value={celsius}
                 onChange={this.handleCelsiusChange} />
-              <TempInput
+              <TemperatureInput
                 scale="f"
                 value={fahrenheit}
                 onChange={this.handleFahrenheitChange} />
