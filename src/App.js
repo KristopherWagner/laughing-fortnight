@@ -6,6 +6,7 @@ import './App.css';
 import Clock from './Clock/Clock';
 import Temperature from './Temperature/Temperature';
 import Game from './Game/Game';
+import ToDoApp from './ToDo/ToDoApp';
 
 class App extends Component {
     render() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Clock />
             <Temperature />
             <Game />
+            <ToDoApp />
           </div>
         );
     }

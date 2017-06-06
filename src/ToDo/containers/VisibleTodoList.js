@@ -15,6 +15,9 @@ const getVisibleTodos = (todos, filter ) => {
     case 'SHOW_ACTIVE':
       retVal = todos.filter(t => !t.completed);
       break;
+    default:
+      retVal = todos;
+      break;
   }
 
   return retVal;
