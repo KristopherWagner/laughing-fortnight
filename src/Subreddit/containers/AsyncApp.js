@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions';
 import Picker from '../components/Picker';
@@ -29,7 +30,7 @@ class AsyncApp extends Component {
   }
 
   handleRefreshClick(e) {
-    e.preventDefault;
+    e.preventDefault();
 
     const { dispatch, selectedSubreddit } = this.props;
     dispatch(invalidateSubreddit(selectedSubreddit));
@@ -44,7 +45,7 @@ class AsyncApp extends Component {
                 <Picker
                   value={selectedSubreddit}
                   onChange={this.handleChange}
-                  options={[ 'reactjs', 'frontend' ]} />
+                  options={[ 'reactjs', 'HeroesOfTheStorm' ]} />
                 <p>
                     {lastUpdated &&
                     <span>
