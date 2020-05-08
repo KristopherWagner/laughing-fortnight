@@ -101,7 +101,7 @@ export default class Game extends Component {
                 'Game start';
             return (
                 <li key={move}>
-                    <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+                    <a href={"#" /* eslint-disable-line jsx-a11y/anchor-is-valid */} onClick={() => this.jumpTo(move)}>{desc}</a> 
                 </li>
             );
         });

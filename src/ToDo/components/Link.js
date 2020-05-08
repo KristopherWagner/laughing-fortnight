@@ -7,8 +7,7 @@ const Link = ({ active, children, onClick }) => {
   }
 
   return (
-        <a
-          href="#"
+        <a href={"#"/* eslint-disable-line jsx-a11y/anchor-is-valid */}
           onClick={e => {
             e.preventDefault();
             onClick();
