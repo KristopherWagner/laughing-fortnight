@@ -54,8 +54,7 @@ class AsyncApp extends Component {
                     </span>
                     }
                     {!isFetching &&
-                        <a
-                          href='#'
+                        <a href={'#'/* eslint-disable-line jsx-a11y/anchor-is-valid */}
                           onClick={this.handleRefreshClick}>
                             Refresh
                         </a>
