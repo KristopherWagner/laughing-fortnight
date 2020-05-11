@@ -1,104 +1,72 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPostsIfNeeded, invalidateSubreddit, selectSubreddit } from '../actions';
 import Picker from '../components/Picker';
 import Posts from '../components/Posts';
 
-class AsyncApp extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleRefreshClick = this.handleRefreshClick.bind(this);
-  }
+export default function AsyncApp() {
+  const dispatch = useDispatch();
+  const invalidate = useCallback(
+    (subreddit) => dispatch(invalidateSubreddit(subreddit)), [dispatch]);
+  const fetchPosts = useCallback(
+    (subreddit) => dispatch(fetchPostsIfNeeded(subreddit)), [dispatch]);
+  const newSubreddit = useCallback(
+    (subreddit) => dispatch(selectSubreddit(subreddit)), [dispatch]);
 
-  componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props;
-    dispatch(fetchPostsIfNeeded(selectedSubreddit));
-  }
+  const postsBySubreddit = useSelector((state) => state.postsBySubreddit);
+  const selectedSubreddit = useSelector((state) => state.selectedSubreddit);
+  const isFetching = postsBySubreddit[selectedSubreddit] ?
+    postsBySubreddit[selectedSubreddit].isFetching : false;
+  const lastUpdated = postsBySubreddit[selectedSubreddit] ?
+    postsBySubreddit[selectedSubreddit].lastUpdated : null;
+  const items = postsBySubreddit[selectedSubreddit] ?
+    postsBySubreddit[selectedSubreddit].items : [];
 
-  componentDidUpdate(prevProps) {
-    if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
-      const { dispatch, selectedSubreddit } = this.props;
-      dispatch(fetchPostsIfNeeded(selectedSubreddit));
-    }
-  }
+  useEffect(() => {
+    fetchPosts(selectedSubreddit);
+  }, [fetchPosts, selectedSubreddit]);
 
-  handleChange(nextSubreddit) {
-    this.props.dispatch(selectSubreddit(nextSubreddit));
-    this.props.dispatch(fetchPostsIfNeeded(nextSubreddit));
-  }
-
-  handleRefreshClick(e) {
+  const handleChange = (nextSubreddit) => newSubreddit(nextSubreddit);
+  const handleRefreshClick = (e) => {
     e.preventDefault();
-
-    const { dispatch, selectedSubreddit } = this.props;
-    dispatch(invalidateSubreddit(selectedSubreddit));
-    dispatch(fetchPostsIfNeeded(selectedSubreddit));
-  }
-
-  render() {
-    const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props;
-
-    return (
-            <div>
-                <Picker
-                  value={selectedSubreddit}
-                  onChange={this.handleChange}
-                  options={[ 'reactjs', 'HeroesOfTheStorm' ]} />
-                <p>
-                    {lastUpdated &&
-                    <span>
-                        Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-                        {' '}
-                    </span>
-                    }
-                    {!isFetching &&
-                        <a href={'#'/* eslint-disable-line jsx-a11y/anchor-is-valid */}
-                          onClick={this.handleRefreshClick}>
-                            Refresh
-                        </a>
-                    }
-                </p>
-                {isFetching && posts.length === 0 &&
-                    <h2>Loading ...</h2>
-                }
-                {!isFetching && posts.length === 0 &&
-                    <h2>Empty.</h2>
-                }
-                {posts.length > 0 &&
-                    <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                        <Posts posts={posts} />
-                    </div>
-                }
-            </div>
-    );
-  }
-}
-
-AsyncApp.propTypes = {
-  selectedSubreddit: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired,
-};
-
-function mapStateToProps(state) {
-  const { selectedSubreddit, postsBySubreddit } = state;
-  const {
-        isFetching, lastUpdated, items: posts,
-    } = postsBySubreddit[selectedSubreddit] || {
-      isFetching: true,
-      items: [],
-    };
-
-  return {
-    selectedSubreddit,
-    posts,
-    isFetching,
-    lastUpdated,
+    invalidate(selectedSubreddit);
+    fetchPosts(selectedSubreddit);
   };
-}
 
-export default connect(mapStateToProps)(AsyncApp);
+  return (
+    <div>
+      <Picker
+        value={selectedSubreddit}
+        onChange={handleChange}
+        options={[ 'reactjs', 'programminghumor' ]}
+      />
+      <p>
+        {lastUpdated ? (
+          <span>
+            Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+            {' '}
+          </span>
+        ): null}
+        {!isFetching ? (
+          <a /* eslint-disable-line jsx-a11y/anchor-is-valid */
+            href='#'
+            onClick={handleRefreshClick}
+          >
+            Refresh
+          </a>
+        ): null}
+      </p>
+      {isFetching && Array.isArray(items) && items.length === 0 ? (
+        <h2>Loading ...</h2>
+      ) : null}
+      {!isFetching && Array.isArray(items) && items.length === 0 ? (
+        <h2>Empty.</h2>
+      ) : null}
+      {Array.isArray(items) && items.length > 0 ? (
+        <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <Posts posts={items} />
+        </div>
+      ) : null}
+    </div>
+  );
+}

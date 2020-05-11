@@ -9,7 +9,7 @@ const store = createStore(todoApp);
 export default function ToDoApp() {
   return (
     <Provider store={store}>
-        <App />
+      <App />
     </Provider>
   );
 }

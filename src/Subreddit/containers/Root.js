@@ -7,8 +7,8 @@ const store = configureStore();
 
 export default function Root() {
   return (
-        <Provider store={store}>
-            <AsyncApp />
-        </Provider>
+    <Provider store={store}>
+      <AsyncApp />
+    </Provider>
   );
 }
