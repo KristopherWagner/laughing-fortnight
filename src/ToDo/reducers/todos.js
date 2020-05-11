@@ -37,8 +37,8 @@ const todos = (state = [], action) => {
       break;
     case 'TOGGLE_TODO':
       retVal = state.map(t =>
-                    todo(t, action)
-                    );
+        todo(t, action)
+      );
       break;
     default:
       retVal = state;

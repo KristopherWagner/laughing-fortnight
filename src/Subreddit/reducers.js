@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import {
-    SELECT_SUBREDDIT,
-    INVALIDATE_SUBREDDIT,
-    REQUEST_POSTS,
-    RECEIVE_POSTS,
+  SELECT_SUBREDDIT,
+  INVALIDATE_SUBREDDIT,
+  REQUEST_POSTS,
+  RECEIVE_POSTS,
 } from './actions';
 
 function selectedSubreddit(state = 'reactjs', action) {
@@ -61,9 +61,9 @@ function postsBySubreddit(state = {}, action) {
 
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
-            // intentional fallthrough
+      // intentional fallthrough
     case RECEIVE_POSTS:
-            // intentional fallthrough
+      // intentional fallthrough
     case REQUEST_POSTS:
       retVal = Object.assign({}, state, {
         [action.subreddit]: posts(state[action.subreddit], action),
