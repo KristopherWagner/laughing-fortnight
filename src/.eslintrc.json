@@ -8,7 +8,6 @@
   "plugins": [
     "redux-saga",
     "react",
-    "jsx-a11y",
     "json"
   ],
   "parser": "babel-eslint",
