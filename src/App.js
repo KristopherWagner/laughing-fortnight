@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Clock from './Clock/Clock';
+import Clock from './Clock';
 import Temperature from './Temperature/Temperature';
 import Game from './Game/Game';
 import ToDoApp from './ToDo/ToDoApp';
