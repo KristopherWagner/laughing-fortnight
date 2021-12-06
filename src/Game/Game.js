@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 import './Game.css';
 
 import calculateWinner from './calculateWinner';
-
-function Square({ onClick, value }) {
-  return (
-    <button
-      className='square'
-      onClick={onClick}
-    >
-      {value}
-    </button>
-  );
-}
+import Square from './Square';
 
 function Board({ onClick, squares }) {
   const renderSquare = (i) => (
