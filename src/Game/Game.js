@@ -1,24 +1,8 @@
 import React, { useState } from 'react';
 import './Game.css';
 
+import Board from './Board';
 import calculateWinner from './calculateWinner';
-import Square from './Square';
-
-function Board({ onClick, squares }) {
-  const renderSquare = (i) => (
-    <Square key={`square-${i}`} onClick={() => onClick(i)} value={squares[i]} />
-  );
-
-  return (
-    <div>
-      {[0, 1, 2].map((i) => (
-        <div className='board-row' key={`row-${i}`}>
-          {[0, 1, 2].map((j) => renderSquare(i*3+j))}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function Game() {
   const [history, setHistory] = useState([{
