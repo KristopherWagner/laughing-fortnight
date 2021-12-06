@@ -4,8 +4,8 @@ import React, {
 import logo from './logo.svg';
 import './App.css';
 import Clock from './Clock';
+import Game from './Game';
 import Temperature from './Temperature/Temperature';
-import Game from './Game/Game';
 import ToDoApp from './ToDo/ToDoApp';
 import Subreddit from './Subreddit';
 
